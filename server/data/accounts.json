@@ -1,0 +1,19 @@
+[
+  {
+    "id": 1,
+    "username": "admin",
+    "password": "admin",
+    "token": "eyJpZCI6MSwiZXhwaXJlcyI6MTczNjkxMzEyMTI3Nn0uZWRlOWZlNDMxN2RjOTk0ZDNlYTQyMTM0ZjBiNjU0ZjgzZjc2MzljNjA5OGNiZDQyZGVhNGVjNDFkMjA5MzEyOA==",
+    "name": "Natalia",
+    "lastname": "Cabanillas Chamochumbi",
+    "gender": false
+  },
+  {
+    "id": 2,
+    "username": "1234",
+    "password": "1234",
+    "name": "Piero",
+    "lastname": "Perez xDDDDD",
+    "gender": true
+  }
+]
