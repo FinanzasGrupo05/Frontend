@@ -89,7 +89,7 @@ export default {
       </div>
     </div>
 
-    <div v-if="invoices.filter(i => !i.walletId).length === 0">No hay facturas porque eres pobre como Natalia Cabanillas</div>
+    <div v-if="invoices.filter(i => !i.walletId).length === 0">No hay facturas pendientes</div>
     <div v-else class="max-width flex col gap-1">
       <Card v-for="invoice in invoices.filter(i => !i.walletId)" :key="invoice.id" class="wallet__container max-width">
         <template #content>
