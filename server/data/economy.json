@@ -1,0 +1,16 @@
+{
+  "wallets": [
+    {
+      "id": 1,
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "userId": 1
+    },
+    {
+      "id": 3,
+      "userId": 1
+    }
+  ]
+}

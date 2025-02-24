@@ -1,0 +1,184 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Patient Management API",
+    "description": "API to manage hospitalized and discharged children"
+  },
+  "host": "localhost:3000",
+  "schemes": ["http"],
+  "tags": [
+    {
+      "name": "patients",
+      "description": "Endpoints to manage patient data"
+    }
+  ],
+  "paths": {
+    "/api/v1/patients/hospitalized": {
+      "get": {
+        "tags": ["patients"],
+        "summary": "Get hospitalized children",
+        "description": "Returns the list of hospitalized children",
+        "responses": {
+          "200": {
+            "description": "List of hospitalized children",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "age": { "type": "integer" },
+                  "condition": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/patients/add": {
+      "post": {
+        "tags": ["patients"],
+        "summary": "Add a new hospitalized child",
+        "description": "Adds a new child to the list of hospitalized children",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["dni", "name", "age", "condition"],
+              "properties": {
+                "dni": { "type": "string" },
+                "name": { "type": "string" },
+                "birthday": { "type": "integer" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": { "description": "Child added successfully" },
+          "400": { "description": "Invalid input or DNI already exists" }
+        }
+      }
+    },
+    "/api/v1/patients/discharged": {
+      "get": {
+        "tags": ["patients"],
+        "summary": "Get discharged children",
+        "description": "Returns the list of discharged children",
+        "responses": {
+          "200": {
+            "description": "List of discharged children",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "birthday": { "type": "integer" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/patients/discharge/{dni}": {
+      "post": {
+        "tags": ["patients"],
+        "summary": "Move a hospitalized child to discharged",
+        "description": "Moves a child from hospitalized list to discharged list",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "dni",
+            "required": true,
+            "type": "string",
+            "description": "DNI of the child to move"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Child moved successfully" },
+          "404": { "description": "Child not found in hospitalized list" }
+        }
+      }
+    },
+    "/api/v1/patients/hospitalize/{dni}": {
+      "post": {
+        "tags": ["patients"],
+        "summary": "Move a discharged child to hospitalized",
+        "description": "Moves a child from discharged list to hospitalized list",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "dni",
+            "required": true,
+            "type": "string",
+            "description": "DNI of the child to move"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Child moved successfully" },
+          "404": { "description": "Child not found in discharged list" }
+        }
+      }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "tags": ["auth"],
+        "summary": "User login",
+        "description": "Logs in a user with username and password. If the token is expired, a new token will be generated and returned. Otherwise, the existing token is returned.",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["username", "password"],
+              "properties": {
+                "username": { "type": "string", "example": "admin" },
+                "password": { "type": "string", "example": "admin" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login successful",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "token": {
+                  "type": "string",
+                  "description": "JWT or encrypted token",
+                  "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                },
+                "expires": {
+                  "type": "integer",
+                  "description": "Token expiration timestamp in milliseconds",
+                  "example": 1735323627443
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Name of the current user",
+                  "example": "Leonardo"
+                },
+                "lastname": {
+                  "type": "string",
+                  "description": "lastname of the current user",
+                  "example": "Da Vinci"
+                }
+              }
+            }
+          },
+          "400": { "description": "Invalid username or password" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    }
+  }
+}
