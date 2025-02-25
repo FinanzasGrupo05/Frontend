@@ -1,4 +1,7 @@
 <script>
+import { formatDateToOnlyDate } from "@/utils/date.js";
+import { InvoiceService } from "@/services/invoice.service.js";
+
 function getNewInvoice() {
   return {
     name: '',
@@ -40,8 +43,15 @@ export default {
 
       this.invoice.status = invoiceStatuses[0]
 
-      this.$emit('save', this.invoice)
-      this.invoice = getNewInvoice()
+      const formatInvoiceToCreateDTO = {
+        facturaName: this.invoice.name,
+        clienteName: this.invoice.client.name,
+        monto: this.invoice.amount,
+        emision: formatDateToOnlyDate(this.invoice.emission),
+        vencimiento: formatDateToOnlyDate(this.invoice.expiration),
+      }
+
+      this.$emit('save', formatInvoiceToCreateDTO)
     },
   },
   watch: {

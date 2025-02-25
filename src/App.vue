@@ -3,13 +3,17 @@ import { RouterLink, RouterView } from 'vue-router'
 import router from "@/router/index.js";
 import {keys} from "@/services/values.js";
 import {getDefaultValue, getLocalStorageItem, setLocalStorageItem} from "@/services/functions.js";
+import { InvoiceService } from "@/services/invoice.service.js";
+
+const invoiceService = new InvoiceService()
+
 export default {
   name: 'TF Economia Natalia Cabanillas',
   data() {
     return {
       dark: window.matchMedia('(prefers-color-scheme: dark)').matches,
       user: getLocalStorageItem(keys.user),
-      invoices: getLocalStorageItem(keys.invoices, getDefaultValue(keys.invoices)),
+      invoices: [],
       wallets: getLocalStorageItem(keys.wallets, getDefaultValue(keys.wallets)),
       wallet: null,
       processing: false,
@@ -49,19 +53,15 @@ export default {
     async createInvoice(invoice) {
       try {
         this.processing = 'Creando Factura...'
-        invoice.id = this.invoices.length ? this.invoices[this.invoices.length-1].id + 1 : 1
-        this.invoices.push(invoice)
 
-        if(invoice.walletId){
-          let wallet = this.wallets.find(w => w.id === invoice.walletId)
-          if(wallet) wallet.invoices.push(invoice)
-          if(this.wallet === invoice.walletId) this.wallet = wallet
-        }
-
-        //await 1 seconds
-        await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000))
-        setLocalStorageItem(keys.invoices, this.invoices)
-        setLocalStorageItem(keys.wallets, this.wallets)
+        invoiceService
+            .createInvoice(invoice)
+            .then(() => {
+              return this.getInvoices()
+            })
+            .then((res) => {
+              this.invoices = res
+            })
       } catch (error) {
         console.error(error)
       } finally {
@@ -165,6 +165,18 @@ export default {
         await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000))
         setLocalStorageItem(keys.wallets, this.wallets)
         setLocalStorageItem(keys.invoices, this.invoices)
+      } catch (error) {
+        console.error(error)
+      } finally {
+        this.processing = false
+      }
+    },
+    async getInvoices() {
+      try {
+        this.processing = 'Cargando Facturas...'
+        const invoices = await invoiceService.getInvoices()
+
+        return invoices
       } catch (error) {
         console.error(error)
       } finally {

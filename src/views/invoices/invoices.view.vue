@@ -95,27 +95,27 @@ export default {
         <template #content>
           <div class="flex row row-justify-center gap-2">
             <div class="flex-col max-width">
-              <div class="wallet__name">{{ invoice.name }}</div>
+              <div class="wallet__name">{{ invoice.facturaName }}</div>
 
 
               <div class="flex row row-justify-center">
                 <div class="flex col max-width" id="left__side">
                   <div class="wallet__client">
-                    Cliente: {{ invoice.client.name }}
+                    Cliente: {{ invoice.clienteName }}
                   </div>
 
                   <div class="wallet__balance">
-                    Monto: {{ currency.symbol}} {{ (invoice.amount / currency.rate).toFixed(2) }}
+                    Monto: {{ currency.symbol}} {{ (invoice.monto / currency.rate).toFixed(2) }}
                   </div>
                 </div>
                 <div class="flex col max-width" id="right__side">
                   <div class="wallet__date">
                     Fecha Emisión:
-                    {{ parseDate(invoice.emission) }}
+                    {{ parseDate(invoice.emision) }}
                   </div>
                   <div class="wallet__date">
                     Fecha Vencimiento:
-                    {{ parseDate(invoice.expiration) }}
+                    {{ parseDate(invoice.vencimiento) }}
                   </div>
                 </div>
               </div>
