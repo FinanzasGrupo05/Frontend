@@ -92,11 +92,11 @@ export default {
       </FloatLabel>
 
       <FloatLabel>
-        <label for="startingBills">Monto Inicial</label>
+        <label for="startingBills">Gastos al inicio de la operación</label>
         <InputNumber id="startingBills" v-model="wallet.startingBills" mode="currency" currency="PEN"/>
       </FloatLabel>
       <FloatLabel>
-        <label for="endingBills">Monto Final</label>
+        <label for="endingBills">Gastos al final de la operación</label>
         <InputNumber id="endingBills" v-model="wallet.endingBills" mode="currency" currency="PEN"/>
       </FloatLabel>
 
