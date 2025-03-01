@@ -63,7 +63,7 @@ export default {
       </FloatLabel>
 
       <div class="flex row center gap-1">
-        <Button label="Registrar" class="margin-top-1" @click="register" severity="secondary"/>
+        <Button label="Registrarme" class="margin-top-1" @click="register" severity="secondary"/>
         <Button label="Iniciar sesión" class="margin-top-1" @click="login"/>
       </div>
 

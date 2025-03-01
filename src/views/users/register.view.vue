@@ -19,6 +19,7 @@ export default {
     },
     async register() {
       this.$toast.removeAllGroups()
+      this.$router.push({name: 'login'})
       this.loading = true
       try {
         const response = await registerService({
@@ -64,14 +65,6 @@ export default {
     <img :src="dark?'/logo-dark.png':'/logo-light.png'" alt="Logo" class="logo"/>
     <div class="login__form center">
       <FloatLabel>
-        <label for="username">Usuario</label>
-        <InputText v-model="username" id="username"/>
-      </FloatLabel>
-      <FloatLabel>
-        <label for="password">Contraseña</label>
-        <InputText v-model="password" id="password"/>
-      </FloatLabel>
-      <FloatLabel>
         <label for="nombres">Nombre</label>
         <InputText v-model="name" id="nombres"/>
       </FloatLabel>
@@ -79,10 +72,18 @@ export default {
         <label for="sexo">Sexo</label>
         <Select v-model="sex" id="sexo" :options="sexes" optionLabel="name" optionValue="value"/>
       </FloatLabel>
+      <FloatLabel>
+        <label for="username">Usuario</label>
+        <InputText v-model="username" id="username"/>
+      </FloatLabel>
+      <FloatLabel>
+        <label for="password">Contraseña</label>
+        <InputText v-model="password" id="password"/>
+      </FloatLabel>
 
       <div class="flex row center gap-1">
         <Button label="Volver a Login" class="margin-top-1" @click="login" severity="secondary"/>
-        <Button label="Registrarme" class="margin-top-1" @click="register"/>
+        <Button label="Crear cuenta" class="margin-top-1" @click="register"/>
       </div>
 
     </div>
