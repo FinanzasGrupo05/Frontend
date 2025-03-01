@@ -60,7 +60,8 @@ function calcTCEA({monto, gastoInicial, gastoFinal, fechaDescuento, fechaFinal, 
         TCEA: Math.pow(valorEntregado / valorRecibido, 360 / dias) - 1,
         descontado: interestDescontado,
         recibido: valorRecibido,
-        entregado: valorEntregado
+        entregado: valorEntregado,
+        neto: valorNeto
     }
 }
 export { getLocalStorageItem, setLocalStorageItem, getDefaultValue, parseDate, calcTCEA, calcInteresDescontado }

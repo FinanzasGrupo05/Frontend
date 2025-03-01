@@ -120,7 +120,7 @@ export default {
                     Monto Inicial: {{currency.symbol}}{{ (wallet.startingBills / currency.rate).toFixed(2) }}
                   </div>
                   <div class="wallet__balance">
-                    Monto Final: {{currency.symbol}}{{ (wallet.startingBills / currency.rate).toFixed(2) }}
+                    Monto Final: {{currency.symbol}}{{ (wallet.endingBills / currency.rate).toFixed(2) }}
                   </div>
                 </div>
 

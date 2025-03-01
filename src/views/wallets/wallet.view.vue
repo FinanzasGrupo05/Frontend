@@ -166,31 +166,21 @@ export default {
       <Column header="Interés Descontado">
         <template #body="slotProps">
           <div>{{currency.symbol}}{{(slotProps.data.descontado / currency.rate).toFixed(2)}}</div>
-          <!--
-          <div class="flex col center">
-            <div>Calcúlame</div>
-            <img src="/esta.png" alt="Ésta" class="size-100"/>
-          </div>-->
+        </template>
+      </Column>
+      <Column header="Valor Neto">
+        <template #body="slotProps">
+          <div>{{currency.symbol}}{{(slotProps.data.neto/ currency.rate).toFixed(2)}}</div>
         </template>
       </Column>
       <Column header="Valor Recibido">
         <template #body="slotProps">
           <div>{{currency.symbol}}{{(slotProps.data.recibido / currency.rate).toFixed(2)}}</div>
-          <!--
-          <div class="flex col center">
-            <div>Calcúlame</div>
-            <img src="/esta.png" alt="Ésta" class="size-100"/>
-          </div>-->
         </template>
       </Column>
       <Column header="Valor Entregado">
         <template #body="slotProps">
           <div>{{currency.symbol}}{{(slotProps.data.entregado / currency.rate).toFixed(2)}}</div>
-          <!--
-          <div class="flex col center">
-            <div>Calcúlame</div>
-            <img src="/esta.png" alt="Ésta" class="size-100"/>
-          </div>-->
         </template>
       </Column>
       <Column header="Estado" field="status">
