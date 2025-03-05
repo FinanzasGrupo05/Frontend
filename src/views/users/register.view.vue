@@ -19,6 +19,31 @@ export default {
     },
     async register() {
       this.$toast.removeAllGroups()
+
+      if(!this.username) return this.$toast.add({
+        severity: 'error',
+        summary: 'Error al crear la cuenta',
+        detail: 'Por favor, ingresa un nombre de usuario',
+        life: 5000
+      })
+      if(!this.password) return this.$toast.add({
+        severity: 'error',
+        summary: 'Error al crear la cuenta',
+        detail: 'Por favor, ingresa una contraseña',
+        life: 5000
+      })
+      if(!this.name) return this.$toast.add({
+        severity: 'error',
+        summary: 'Error al crear la cuenta',
+        detail: 'Por favor ingresa tu nombre',
+        life: 5000
+      })
+      if(this.sex === null) return this.$toast.add({
+        severity: 'error',
+        summary: 'Error al crear la cuenta',
+        detail: 'Por favor elige un sexo',
+        life: 5000
+      })
       this.$router.push({name: 'login'})
       this.loading = true
       try {
@@ -33,7 +58,7 @@ export default {
         this.$toast.add({
           severity: 'error',
           summary: 'Error al crear la cuenta',
-          detail: 'Ya existe otra cuenta con estas credenciales',
+          detail: 'No pudo establecerse comunicación con el servidor',
           life: 5000
         })
         console.error(e)

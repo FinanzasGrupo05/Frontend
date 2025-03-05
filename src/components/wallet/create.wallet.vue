@@ -86,6 +86,7 @@ export default {
       <Button icon="pi pi-times" class="p-button-text" @click="close" severity="secondary"/>
     </template>
     <div class="flex col gap-0-5 center">
+
       <FloatLabel>
         <InputText id="name" class="flex-auto" autocomplete="off" v-model="wallet.name"/>
         <label for="name">Nombre de la Cartera</label>
@@ -96,7 +97,7 @@ export default {
       </FloatLabel>
       <FloatLabel>
         <label for="discountPercentage">Porcentaje de Descuento</label>
-        <InputNumber id="discountPercentage" v-model="wallet.discount.percentage" mode="decimal" min="0" max="100"/>
+        <InputNumber id="discountPercentage" v-model="wallet.discount.percentage" :minFractionDigits="2" :maxFractionDigits="2"/>
       </FloatLabel>
       <FloatLabel>
         <Dropdown id="discountType" v-model="wallet.discount.type" :options="discountTypes" optionLabel="name"/>
